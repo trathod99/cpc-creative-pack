@@ -118,6 +118,20 @@ module.exports = function(grunt) {
 			}
 		},
 
+		copy: {
+			main: {
+				files: [
+					{expand:true, src:['css/**'], dest: 'dist/'},
+					{expand:true, src:['js/**'], dest: 'dist/'},
+					{expand:true, src:['lib/**'], dest: 'dist/'},
+					{expand:true, src:['images/**'], dest: 'dist/'},
+					{expand:true, src:['plugin/**'], dest: 'dist/'},
+					{expand:true, src:['**.md'], dest: 'dist/'},
+					{expand:true, src:['**.html'], dest: 'dist/'},
+				],
+			},
+		},
+
 		watch: {
 			js: {
 				files: [ 'Gruntfile.js', 'js/reveal.js' ],
@@ -157,6 +171,7 @@ module.exports = function(grunt) {
 	// Dependencies
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
+	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-qunit' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
