@@ -282,7 +282,7 @@ body {
     width: 2.6em;
     height: 0.5em;
     border-radius: 0.25em;
-    background-color: currentColor;
+    background-color: #035642;
     transition: all 0.15s ease, background-color 0.8s ease;
     -webkit-transform-origin: 0.2em 50%;
             transform-origin: 0.2em 50%;
