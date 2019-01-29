@@ -126,7 +126,6 @@ module.exports = function(grunt) {
 					{expand:true, src:['lib/**'], dest: 'dist/'},
 					{expand:true, src:['images/**'], dest: 'dist/'},
 					{expand:true, src:['plugin/**'], dest: 'dist/'},
-					{expand:true, src:['**.md'], dest: 'dist/'},
 					{expand:true, src:['**.html'], dest: 'dist/'},
 				],
 			},
