@@ -6,9 +6,14 @@
 ```sh
 $ git clone https://github.com/cpc-it/cpc-creative-pack
 ```
-2. CD into the repo and start the Node server
+2. CD into the repo and install dependencies 
 ```sh
-$ cd cpc-creative-pack && npm start
+$ cd cpc-creative-pack && npm install 
+```
+
+3. Start server
+```sh
+npm start
 ```
 
 ## Customizing the Presentation
