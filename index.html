@@ -15,6 +15,12 @@
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
+		<!-- JS Dependencies -->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
+		<script type="text/javascript" src="js/handlebars-v4.0.12.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -22,6 +28,12 @@
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
+			$(function() {
+            var source = $("#document-template").html();
+            var template = Handlebars.compile(source);
+            var html = template(data);
+            $('.slides').html(html);
+        });
 		</script>
 	</head>
 	<body>
@@ -38,12 +50,21 @@
 					<a href="#">Link 2</a>
 					<a href="#/end">Jump to End</a>
 				</section>
+				<div class="automated-slides">
+
+				</div>
 				<section id="end">
 					<h2>Thank You!</h2>
 					<a href="#/home">Go back to beginning</a>
 				</section>
 				</div>
 		</div>	
+		<script id="document-template" type="text/x-handlebars-template">
+			{{#each this}}
+			<section class="slide">
+				<h3>{{ fields.title }}</h3>
+			{{/each}}
+		</script>
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
 		<script>
