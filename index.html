@@ -34,6 +34,8 @@
 			$(function() {
 				var source = $("#document-template").html();
 				var template = Handlebars.compile(source);
+				// data = data[0].items;
+				// console.log(data);
 				var html = template(data);
 				$('.slides').html(html);
 			});
@@ -60,22 +62,14 @@
 					<a href="#">Link 1</a>
 					<a href="#">Link 2</a>
 					<a href="#/end">Jump to End</a>
-				</section>
-				<div class="automated-slides">
-
+				</section> -->
 				</div>
-				<section id="end">
-					<h2>Thank You!</h2>
-					<a href="#/home">Go back to beginning</a>
-				</section>
-				</div> -->
 			</div>
 		</div>	
 		<script id="document-template" type="text/x-handlebars-template">
 			{{#each this}}
 			<section class="slide">
 				<h3>{{ fields.title }}</h3>
-				<p>{{fields.slideImage.["0"].fields.file.url}}</p>
 				<img src={{ fields.slideImage.[0].fields.file.url }} width=400px; />
 			</section>
 			{{/each}}
