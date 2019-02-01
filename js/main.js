@@ -12,5 +12,6 @@ const client = contentful.createClient({
     })
     .then(function(content) {
         data.push(content);
+        console.log(content);
     })
     .catch(err => console.log(err));

@@ -28,12 +28,24 @@
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
+			// Log the data
+			console.log(data);
+			// Build template
 			$(function() {
-            var source = $("#document-template").html();
-            var template = Handlebars.compile(source);
-            var html = template(data);
-            $('.slides').html(html);
-        });
+				var source = $("#document-template").html();
+				var template = Handlebars.compile(source);
+				var html = template(data);
+				$('.slides').html(html);
+			});
+			Handlebars.registerHelper('concat', function(string1, string2) {
+				console.log("" + string2);
+				s1 = Handlebars.escapeExpression(string1);
+				s2 = Handlebars.escapeExpression(string2);
+
+				return new Handlebars.SafeString(
+				"" + s1 + s2
+				);
+			});
 		</script>
 	</head>
 	<body>
@@ -42,9 +54,8 @@
 		<p id="footer">Cal Poly Corporation | Creative Pack</p>
 		<div class="reveal">
 			<div class="slides">
-				<section id="home">
+				<!-- <section id="home">
 					<img src="lib/img/logo.jpg" width="400px"   />
-					<!-- <h2>Cal Poly Corporation</h2> -->
 					<h3>Marketing and Communcations</h3>
 					<a href="#">Link 1</a>
 					<a href="#">Link 2</a>
@@ -57,12 +68,16 @@
 					<h2>Thank You!</h2>
 					<a href="#/home">Go back to beginning</a>
 				</section>
-				</div>
+				</div> -->
+			</div>
 		</div>	
 		<script id="document-template" type="text/x-handlebars-template">
 			{{#each this}}
 			<section class="slide">
 				<h3>{{ fields.title }}</h3>
+				<p>{{fields.slideImage.["0"].fields.file.url}}</p>
+				<img src={{ fields.slideImage.[0].fields.file.url }} width=400px; />
+			</section>
 			{{/each}}
 		</script>
 		<script src="lib/js/head.min.js"></script>
