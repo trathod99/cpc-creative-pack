@@ -6,8 +6,8 @@ const client = contentful.createClient({
   });
   var data = [];
   // SET THIS VALUE TO DESIRED QUARTER / YEAR
-  var year = 2019;
-  var quarter = "Fall"
+  var year = 2018;
+  var quarter = "Winter"
   
   // This API call will request an entry with the specified ID from the space defined at the top, using a space-specific access token.
   client

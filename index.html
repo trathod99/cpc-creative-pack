@@ -37,7 +37,7 @@
 				// data = data[0].items;
 				// console.log(data);
 				var html = template(data);
-				$('.slides').html(html);
+				$('.slides section#home').after(html);
 			});
 			Handlebars.registerHelper('concat', function(string1, string2) {
 				console.log("" + string2);
@@ -56,13 +56,18 @@
 		<p id="footer">Cal Poly Corporation | Creative Pack</p>
 		<div class="reveal">
 			<div class="slides">
-				<!-- <section id="home">
+				<section id="home">
 					<img src="lib/img/logo.jpg" width="400px"   />
 					<h3>Marketing and Communcations</h3>
 					<a href="#">Link 1</a>
 					<a href="#">Link 2</a>
 					<a href="#/end">Jump to End</a>
-				</section> -->
+				</section>
+				<section id="end">
+					<h3>The End</h3>
+					<a href="#home">Back to Beginning</a>
+				</section>
+
 				</div>
 			</div>
 		</div>	
