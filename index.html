@@ -15,6 +15,12 @@
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
+		<!-- JS Dependencies -->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
+		<script type="text/javascript" src="js/handlebars-v4.0.12.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -22,6 +28,26 @@
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
+			// Log the data
+			console.log(data);
+			// Build template
+			$(function() {
+				var source = $("#document-template").html();
+				var template = Handlebars.compile(source);
+				// data = data[0].items;
+				// console.log(data);
+				var html = template(data);
+				$('.slides section#home').after(html);
+			});
+			Handlebars.registerHelper('concat', function(string1, string2) {
+				console.log("" + string2);
+				s1 = Handlebars.escapeExpression(string1);
+				s2 = Handlebars.escapeExpression(string2);
+
+				return new Handlebars.SafeString(
+				"" + s1 + s2
+				);
+			});
 		</script>
 	</head>
 	<body>
@@ -32,18 +58,27 @@
 			<div class="slides">
 				<section id="home">
 					<img src="lib/img/logo.jpg" width="400px"   />
-					<!-- <h2>Cal Poly Corporation</h2> -->
 					<h3>Marketing and Communcations</h3>
 					<a href="#">Link 1</a>
 					<a href="#">Link 2</a>
 					<a href="#/end">Jump to End</a>
 				</section>
 				<section id="end">
-					<h2>Thank You!</h2>
-					<a href="#/home">Go back to beginning</a>
+					<h3>The End</h3>
+					<a href="#home">Back to Beginning</a>
 				</section>
+
 				</div>
+			</div>
 		</div>	
+		<script id="document-template" type="text/x-handlebars-template">
+			{{#each this}}
+			<section class="slide">
+				<h3>{{ fields.title }}</h3>
+				<img src={{ fields.slideImage.[0].fields.file.url }} width=400px; />
+			</section>
+			{{/each}}
+		</script>
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
 		<script>
