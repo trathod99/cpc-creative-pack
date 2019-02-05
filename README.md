@@ -23,7 +23,7 @@ Currently, the presentation uses one of Reveal.js's built-in themes (called "Whi
 ## Choosing Quarter/Year
 
 By default, the presentation will include **all** slides in the Contentful space. To specify which year/quarter to build the presentation for, edit the following lines in main.js:
-```sh
+```javascript
 var year = 2018; // acceptable range: 2018-2030
 var quarter = "Fall" // acceptable values are Fall, Winter, Spring, or Summer
 ```
