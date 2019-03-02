@@ -1,48 +1,52 @@
-# Creative Pack Presentation Template built with Reveal.js
+# Automated Presentations with Contentful and Reveal.js
 
-## Starting the Presentation
+## The Process
 
-1. Clone the repo
-```sh
-$ git clone https://github.com/cpc-it/cpc-creative-pack
-```
-2. CD into the repo and install dependencies 
-```sh
-$ cd cpc-creative-pack && npm install 
-```
+Basically:
+1. Graphic Designers create some sort of brand asset (i.e. an ad or a flyer)
+2. Social Media team posts this asset to some social media channel (i.e. Instagram)
+3. Zapier automatically pulls this new asset into the Contentful CMS
+4. Quarterly, a developer runs a build processs that compiles Contentful entries into a responsive HTML presentation and deploys to Amazon S3. This process takes about 5 minutes.
 
-3. Start server
-```sh
-npm start
-```
+# Tech Details 
 
-## Customizing the Presentation
+## Tools
 
-Currently, the presentation uses one of Reveal.js's built-in themes (called "White"). Any custom CSS is contained within css/custom.css. 
+- Reveal.js
+- Handlebars.js
+- Contentful
+- Amazon S3
+- Github
+- Zapier
 
-## Choosing Quarter/Year
+## Reveal.js
 
-By default, the presentation will include **all** slides in the Contentful space. To specify which year/quarter to build the presentation for, edit the following lines in main.js:
-```javascript
-var year = 2018; // acceptable range: 2018-2030
-var quarter = "Fall" // acceptable values are Fall, Winter, Spring, or Summer
-```
+I selected Reveal.js as a framework for building responsive HTML presentations instead of traditional, local Powerpoints. Reveal.js felt lightweight and easy to customize, while also offering sensible defaults. The accessibility/responsiveness of an HTML presentation made it a no-brainer over something like Powerpoint. 
 
-## Building the Production Version for S3 Hosting
+The biggest advantage was its dead-simple HTML structure. Each slide is simply a <section>, meaning populating the presentation with an API and a templating framework would be easy.
 
-1. Ensure you are in the creative pack directory
-```sh
-cd cpc-creative-pack
-```
+## Handlebars.js
 
-2. Run grunt copy to put all necessary static files in the /dist directory
-```sh
-grunt copy
-```
+There were a few options for accessing the Contentful API and parsing/injecting the data. I decided on Handlebars.js for its simplicity, as something like React or Vue felt like overkill for this use case.
 
-3. Ensure the AWS command line tool is installed 
+I used vanilla Javascript to connect to the Contentful API, filter the response by desired year/quarter, and inject the resulting data/assets into the existing presentation structure. The result was an automated solution to building and populating presentations that automatically handled things like image resizing/placement. 
 
-2. Run the following command to upload the dist folder to a specified S3 bucket
-```sh
-aws s3 sync ./dist s3://cpc-marcom-creative-packs/[specify remote directory] 
-```
+## Contentful
+
+Instead of having one employee responsible for collecting 100+ assets and turning them into a Powerpoint presentation every quarter, I implemented Contentful, a headless CMS and single source of truth where employees could upload and store their marketing assets over the course of a quarter. 
+
+Contentful allows for the creation of custom data models, and serves data over a robust API. Users are presented with an easy-to-use GUI that resembles something like Wordpress, so anyone in the department can log in and upload assets that they want included in the presentation. 
+
+## Amazon S3
+
+We needed a cheap, easy way to host these static web presentations. The organization already used AWS so S3 was a good option and dead simple to set up. One command with the AWS CLI sends a presentation to S3 and it's instantly avaiable to anyone with an internet connection, making sharing presentations a lot easier than sending around different version of a .ppt over email. 
+
+## Github
+
+I put the presentation template on Github, meaning any developer could clone it to their machine, build and configure the presentation with one command, and deploy it to S3. The entire process takes around 5 minutes from beginning to end, making it a huge time saver when compared to the previous process. 
+
+## Zapier
+
+Lots of the assets that made it to the presentations were sourced from social media posts throughout the quarter. I used Zapier to automatically pull in certain assets from Instagram, Twitter, and Facebook, and create entries in Contentful. Again, a big time saver for the social media team because they were no longer reponsible for manually uploading brand assets to the CMS. 
+ 
+
