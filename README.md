@@ -39,7 +39,7 @@ Contentful allows for the creation of custom data models, and serves data over a
 
 ## Amazon S3
 
-We needed a cheap, easy way to host these static web presentations. The organization already used AWS so S3 was a good option and dead simple to set up. One command with the AWS CLI sends a presentation to S3 and it's instantly avaiable to anyone with an internet connection, making sharing presentations a lot easier than sending around different version of a .ppt over email. 
+We needed a inexpensive and flexible way to host these static web presentations. The organization already used AWS so S3 was a suitable option and simple to set up. One command with the AWS CLI sends a presentation to S3, and it's instantly available to anyone with an internet connection, making sharing presentations a lot easier than sending around different version of a .ppt over email. 
 
 ## Github
 
