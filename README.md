@@ -21,7 +21,7 @@ Basically:
 
 ## Reveal.js
 
-I selected Reveal.js as a framework for building responsive HTML presentations instead of traditional, local Powerpoints. Reveal.js felt lightweight and easy to customize, while also offering sensible defaults. The accessibility/responsiveness of an HTML presentation made it a no-brainer over something like Powerpoint. 
+I selected Reveal.js as a framework for building responsive HTML presentations instead of traditional, local Powerpoints. Reveal.js is lightweight and easy to customize, while also offering sensible defaults. The accessibility/responsiveness of an HTML presentation made it a no-brainer over something like Powerpoint. 
 
 The biggest advantage was its dead-simple HTML structure. Each slide is simply a \<section>, meaning populating the presentation with an API and a templating framework would be easy.
 
